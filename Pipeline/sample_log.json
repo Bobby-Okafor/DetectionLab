@@ -1,1 +1,23 @@
-
+[
+  {
+    "Id": 4688,
+    "TimeCreated": {
+      "SystemTime": "1697040000000"
+    },
+    "Message": "New Process Name: powershell.exe\nCreator Process Name: winword.exe\nProcess Command Line: powershell.exe -enc SQBFAFgA\nAccount Name: user1"
+  },
+  {
+    "Id": 4688,
+    "TimeCreated": {
+      "SystemTime": "1697040005000"
+    },
+    "Message": "New Process Name: rundll32.exe\nCreator Process Name: powershell.exe\nProcess Command Line: rundll32.exe shell32.dll,Control_RunDLL\nAccount Name: user1"
+  }
+],
+{
+  "Id": 4688,
+  "TimeCreated": {
+    "SystemTime": "1697040002000"
+  },
+  "Message": "New Process Name: notepad.exe\nCreator Process Name: explorer.exe\nProcess Command Line: notepad.exe\nAccount Name: user1"
+}
