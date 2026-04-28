@@ -1,4 +1,4 @@
-# Detection-Pipeline-Prototype-
+# Detection-Lab
 
 This repository contains a lightweight Python-based detection pipeline for analyzing Windows process telemetry and identifying multi-event attack patterns.
 
