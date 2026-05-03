@@ -1,28 +1,74 @@
 # Detection-Lab
 
-This repository contains a lightweight Python-based detection pipeline for analyzing Windows process telemetry and identifying multi-event attack patterns.
+Production grade Detection as Code portfolio focused on:
+- Threat Hunting
+- Detection Engineering
+- Atomic Red Team validation
+- Behavioral correlation
+- Incident generation
+- Multi telemetry security analytics
 
+---
 
-## Pipeline Capabilities
-- Ingests raw JSON logs with inconsistent encoding
-- Parses Windows Event ID 4688 process creation events
-- Normalizes timestamps for accurate event sequencing
-- Structures process, parent, and command-line data
+# Core Detection Domains
 
-## Detection Approach
-Focuses on behavioral correlation rather than single-event indicators.
+## Endpoint Telemetry
+- Windows Security Event ID 4688
+- PowerShell execution
+- Parent child process relationships
+- Command line analytics
 
-Current detection:
-- Encoded PowerShell → rundll32 execution (stateful chain)
+## Identity Telemetry
+- Windows Security Event ID 4624
+- Windows Security Event ID 4625
+- Failed authentication tracking
+- Brute force detection
+- User behavioral correlation
 
-## Key Insight
-Detection reliability depends on correct event ordering.
+## Network Telemetry
+- Sysmon Event ID 3
+- Source and destination IP analysis
+- Port based anomaly detection
+- Process to network linkage
+---
 
-Raw telemetry contained inconsistent timestamp formats, which broke correlation logic. This pipeline resolves that by normalizing time before detection.
+# Active Detection Pipelines
 
-## Purpose
-Demonstrates detection engineering concepts:
-- Log normalization
-- Time-based correlation
-- Behavioral detection logic
-- False positive awareness
+## DET-T1059-FAILEDLOGON-v1
+Detects:
+- Suspicious PowerShell
+- Failed logon clustering
+- User based brute force attempts
+
+## DET-T1059-FAILEDLOGON-NETWORK-v2
+Detects:
+- Failed logon to execution chain
+- PowerShell execution
+- Network connections
+- Multi source behavioral anomalies
+
+---
+
+# ATT&CK Coverage
+
+- T1059.001 PowerShell
+- T1110 Brute Force
+- T1071 Application Layer Protocol
+
+---
+
+# Repository Structure
+
+```text
+Detection-Lab/
+├── Detections/
+├── Pipeline/
+├── telemetry/
+├── reports/
+├── attack_runs/
+├── sigma/
+├── kql/
+├── spl/
+├── playbooks/
+├── screenshots/
+└── README.md
