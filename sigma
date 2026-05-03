@@ -1,1 +1,3 @@
-
+suspicious_powershell.yml
+failed_logon_correlation.yml
+network_behavior.yml
