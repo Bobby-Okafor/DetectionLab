@@ -3,15 +3,10 @@ name: Detection Pipeline Validation
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'Pipeline/**'
-      - 'telemetry/**'
-      - 'Detections/**'
+    
   pull_request:
     branches: [ main ]
-    paths:
-      - 'Pipeline/**'
-      - 'telemetry/**'
+   
 
 jobs:
   validate-pipeline:
