@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 4688,
+    "TimeCreated": { "SystemTime": "2025-03-15T14:22:10.441Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "A new process has been created.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-1234567890-1234567890-1234567890-1001\n\tAccount Name:\t\tbobby\n\tAccount Domain:\t\tDESKTOP-LAB01\n\tLogon ID:\t\t0x47A3F\n\nProcess Information:\n\tNew Process ID:\t\t0x1e4\n\tNew Process Name:\tC:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\n\tToken Elevation Type:\tTokenElevationTypeDefault (1)\n\tMandatory Label:\t\tMandatory Label\\Medium Mandatory Level\n\tCreator Process ID:\t0x558\n\tCreator Process Name:\tC:\\Windows\\explorer.exe\n\tProcess Command Line:\tpowershell.exe -EncodedCommand JABjAG8AbQBtAGEAbgBkACAAPQAgACcAbgBlAHQAIAB1AHMAZQByACAAaABhAGMAawBlAHIAJwA="
+  },
+  {
+    "Id": 4688,
+    "TimeCreated": { "SystemTime": "2025-03-15T14:22:37.882Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "A new process has been created.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-1234567890-1234567890-1234567890-1001\n\tAccount Name:\t\tbobby\n\tAccount Domain:\t\tDESKTOP-LAB01\n\tLogon ID:\t\t0x47A3F\n\nProcess Information:\n\tNew Process ID:\t\t0x2b8\n\tNew Process Name:\tC:\\Windows\\System32\\rundll32.exe\n\tToken Elevation Type:\tTokenElevationTypeDefault (1)\n\tMandatory Label:\t\tMandatory Label\\Medium Mandatory Level\n\tCreator Process ID:\t0x1e4\n\tCreator Process Name:\tC:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\n\tProcess Command Line:\trundll32.exe C:\\Users\\bobby\\AppData\\Local\\Temp\\payload.dll,DllMain"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 4688,
+    "TimeCreated": { "SystemTime": "2025-03-15T08:01:14.003Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "A new process has been created.\n\nSubject:\n\tAccount Name:\t\tbobby\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nProcess Information:\n\tNew Process Name:\tC:\\Windows\\System32\\cmd.exe\n\tCreator Process Name:\tC:\\Windows\\explorer.exe\n\tProcess Command Line:\tcmd.exe /c ipconfig /all"
+  },
+  {
+    "Id": 4688,
+    "TimeCreated": { "SystemTime": "2025-03-15T08:05:22.771Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "A new process has been created.\n\nSubject:\n\tAccount Name:\t\tbobby\n\nProcess Information:\n\tNew Process Name:\tC:\\Windows\\System32\\notepad.exe\n\tCreator Process Name:\tC:\\Windows\\explorer.exe\n\tProcess Command Line:\tnotepad.exe C:\\Users\\bobby\\Documents\\notes.txt"
+  },
+  {
+    "Id": 4624,
+    "TimeCreated": { "SystemTime": "2025-03-15T08:00:01.000Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account was successfully logged on.\n\nNew Logon:\n\tAccount Name:\t\tbobby\n\tAccount Domain:\t\tDESKTOP-LAB01\n\tLogon ID:\t\t0x4A2B1\n\nLogon Information:\n\tLogon Type:\t\t2\n\tAuthentication Package:\tKerberos"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T07:59:44.112Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nAccount For Which Logon Failed:\n\tAccount Name:\t\tbobby\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tSource Network Address:\t192.168.56.101\n\tSource Port:\t\t0"
+  }
+]

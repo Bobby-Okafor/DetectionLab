@@ -1,0 +1,11 @@
+# Detection-Lab Pipeline Dependencies
+# Python 3.11+
+
+# No third-party dependencies required for core pipeline.
+# All modules use Python standard library only:
+#   json, re, datetime, pathlib, argparse, uuid, sys, math, dataclasses
+
+# Optional: install these for extended development tooling
+# pytest>=7.0          # if migrating replay_harness to pytest
+# pyyaml>=6.0          # if adding YAML-based detection rule loading
+# sigma-cli>=0.9       # if adding automated Sigma → KQL conversion

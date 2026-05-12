@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:01.112Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nSubject:\n\tSecurity ID:\t\tNULL SID\n\nAccount For Which Logon Failed:\n\tSecurity ID:\t\tNULL SID\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\tStatus:\t\t0xC000006D\n\tSub Status:\t\t0xC000006A\n\nNetwork Information:\n\tWorkstation Name:\tATTACKER-VM\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49812\n\nLogon Process:\t\tNtLmSsp\n\tAuthentication Package:\tNTLM"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:03.445Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nSubject:\n\tSecurity ID:\t\tNULL SID\n\nAccount For Which Logon Failed:\n\tSecurity ID:\t\tNULL SID\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tWorkstation Name:\tATTACKER-VM\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49813\n\nLogon Process:\t\tNtLmSsp\n\tAuthentication Package:\tNTLM"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:05.991Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nAccount For Which Logon Failed:\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49814"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:08.003Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nAccount For Which Logon Failed:\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49815"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:10.227Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nAccount For Which Logon Failed:\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49816"
+  },
+  {
+    "Id": 4625,
+    "TimeCreated": { "SystemTime": "2025-03-15T09:10:12.881Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account failed to log on.\n\nAccount For Which Logon Failed:\n\tAccount Name:\t\tadministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\nFailure Information:\n\tFailure Reason:\t\tUnknown user name or bad password.\n\nNetwork Information:\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t49817"
+  }
+]

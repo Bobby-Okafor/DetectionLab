@@ -1,0 +1,86 @@
+name: Detection Pipeline Validation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Pipeline/**'
+      - 'telemetry/**'
+      - 'Detections/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Pipeline/**'
+      - 'telemetry/**'
+
+jobs:
+  validate-pipeline:
+    name: Run replay harness regression tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate schema contracts
+        run: |
+          cd Pipeline
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          from ingest import load_json
+          from normalize import normalize_events
+          from schema_validator import validate_events
+          events = load_json('../telemetry/raw/T1059.001_encoded_ps.json')
+          normalised = normalize_events(events)
+          valid, rejected = validate_events(normalised)
+          assert len(rejected) == 0, f'Schema validation failed: {len(rejected)} rejected events'
+          print(f'Schema validation passed: {len(valid)} valid events')
+          "
+
+      - name: Run full detection regression suite
+        run: |
+          cd Pipeline
+          python replay_harness.py --suite all --verbose
+
+      - name: Validate pipeline CLI on sample telemetry
+        run: |
+          python Pipeline/run_pipeline.py \
+            --input telemetry/raw/T1059.001_encoded_ps.json \
+            --output /tmp/ci_alerts.json \
+            --window 60 \
+            --quiet
+          python -c "
+          import json
+          with open('/tmp/ci_alerts.json') as f:
+              result = json.load(f)
+          alerts = result.get('alerts', [])
+          assert len(alerts) >= 1, f'Expected at least 1 alert, got {len(alerts)}'
+          assert alerts[0]['detection_id'] == 'DET-CHAIN-T1059.001-T1218.011-v1'
+          print(f'Pipeline CLI validation passed: {len(alerts)} alert(s) fired')
+          "
+
+      - name: Validate clean baseline produces zero alerts
+        run: |
+          python Pipeline/run_pipeline.py \
+            --input telemetry/raw/clean_baseline.json \
+            --output /tmp/baseline_alerts.json \
+            --quiet
+          python -c "
+          import json
+          with open('/tmp/baseline_alerts.json') as f:
+              result = json.load(f)
+          alerts = result.get('alerts', [])
+          assert len(alerts) == 0, f'False positives on clean baseline: {len(alerts)} alert(s)'
+          print('Clean baseline validation passed: 0 alerts as expected')
+          "

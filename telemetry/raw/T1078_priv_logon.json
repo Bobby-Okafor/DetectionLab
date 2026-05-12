@@ -1,0 +1,8 @@
+[
+  {
+    "Id": 4624,
+    "TimeCreated": { "SystemTime": "2025-03-15T02:33:17.009Z" },
+    "Computer": "DESKTOP-LAB01",
+    "Message": "An account was successfully logged on.\n\nSubject:\n\tSecurity ID:\t\tNULL SID\n\nNew Logon:\n\tSecurity ID:\t\tS-1-5-21-1234567890-1234567890-1234567890-500\n\tAccount Name:\t\tAdministrator\n\tAccount Domain:\t\tDESKTOP-LAB01\n\tLogon ID:\t\t0xF3A12\n\nLogon Information:\n\tLogon Type:\t\t3\n\tLogon Process:\t\tNtLmSsp\n\tAuthentication Package:\tNTLM\n\nNetwork Information:\n\tWorkstation Name:\tATTACKER-VM\n\tSource Network Address:\t192.168.56.105\n\tSource Port:\t\t50122"
+  }
+]

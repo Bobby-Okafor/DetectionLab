@@ -1,0 +1,38 @@
+title: Brute Force - Multiple Failed Logons for Single Account
+id: c7a1e3f9-2b4d-4e8a-91c5-3f7b0d2e5a16
+status: test
+description: |
+    Detects five or more failed logon events (EID 4625) for the same account
+    within 60 seconds, consistent with credential brute force or password
+    spraying activity (T1110.001).
+references:
+    - https://attack.mitre.org/techniques/T1110/001/
+    - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1110.001/T1110.001.md
+author: Bobby Okafor
+date: 2025-03-15
+tags:
+    - attack.credential_access
+    - attack.t1110.001
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4625
+    filter_noise:
+        TargetUserName|contains:
+            - '$'
+            - 'ANONYMOUS'
+    condition: selection and not filter_noise | count(TargetUserName) by TargetUserName > 4
+timeframe: 60s
+falsepositives:
+    - Automated service account authentication failures during password rotation
+    - Users mistyping credentials repeatedly
+    - Legacy authentication protocols that retry on failure
+level: medium
+fields:
+    - TargetUserName
+    - IpAddress
+    - WorkstationName
+    - Status
+    - SubStatus

@@ -1,0 +1,61 @@
+// Detection ID: DET-CHAIN-T1059.001-T1218.011-v1
+// Description:  Encoded PowerShell execution followed by LOLBin process
+//               creation within a 60-second correlation window.
+// Data Sources: SecurityEvent (EID 4688), Sysmon via WindowsEvent
+// Severity:     High
+// MITRE:        T1059.001, T1218.011
+// Validated:    2025-03-15 against Atomic Red Team T1059.001-4
+// Author:       Bobby Okafor
+// Version:      1
+
+let window = 60s;
+let lolbins = dynamic([
+    "rundll32.exe", "regsvr32.exe", "mshta.exe",
+    "wscript.exe",  "cscript.exe",  "certutil.exe",
+    "bitsadmin.exe","msiexec.exe"
+]);
+
+// Encoded PowerShell events
+let EncodedPS = SecurityEvent
+| where EventID == 4688
+| where Process has_any ("powershell.exe", "pwsh.exe")
+| where CommandLine has_any ("-enc", "-EncodedCommand", "-e ")
+| project
+    t_ps     = TimeGenerated,
+    host     = Computer,
+    user     = SubjectUserName,
+    ps_proc  = tolower(NewProcessName),
+    ps_cmd   = CommandLine,
+    ps_pid   = NewProcessId,
+    logon_id = SubjectLogonId;
+
+// LOLBin follow-on events
+let LOLBin = SecurityEvent
+| where EventID == 4688
+| where tolower(NewProcessName) has_any (lolbins)
+| project
+    t_lb      = TimeGenerated,
+    host      = Computer,
+    lb_proc   = tolower(NewProcessName),
+    lb_cmd    = CommandLine,
+    parent_pid = ProcessId;
+
+// Correlate within window
+EncodedPS
+| join kind=inner LOLBin on host
+| where t_lb > t_ps
+| where t_lb - t_ps <= window
+| extend delta_seconds = datetime_diff('second', t_lb, t_ps)
+| project
+    TimeGenerated   = t_ps,
+    DetectionID     = "DET-CHAIN-T1059.001-T1218.011-v1",
+    Severity        = "High",
+    Host            = host,
+    User            = user,
+    EncodedPSProc   = ps_proc,
+    EncodedPSCmd    = ps_cmd,
+    LOLBinProc      = lb_proc,
+    LOLBinCmd       = lb_cmd,
+    DeltaSeconds    = delta_seconds,
+    MITRETechniques = "T1059.001, T1218.011"
+| sort by TimeGenerated desc

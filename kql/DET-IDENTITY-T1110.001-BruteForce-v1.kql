@@ -1,0 +1,45 @@
+// Detection ID: DET-IDENTITY-T1110.001-BruteForce-v1
+// Description:  Five or more failed logon attempts (EID 4625) for the same
+//               account within a 60-second window from the same source IP.
+// Data Sources: SecurityEvent (EID 4625)
+// Severity:     Medium
+// MITRE:        T1110.001
+// Validated:    2025-03-15 against Atomic Red Team T1110.001-1
+// Author:       Bobby Okafor
+// Version:      1
+
+let window        = 60m;
+let threshold     = 5;
+
+SecurityEvent
+| where EventID == 4625
+| where TargetUserName !in ("", "-", "ANONYMOUS LOGON")
+| summarize
+    FailureCount  = count(),
+    FirstSeen     = min(TimeGenerated),
+    LastSeen      = max(TimeGenerated),
+    SrcIPs        = make_set(IpAddress, 10),
+    FailureTypes  = make_set(Status, 5),
+    Hosts         = make_set(Computer, 5)
+    by
+    TargetUserName,
+    bin(TimeGenerated, window)
+| where FailureCount >= threshold
+| extend
+    DetectionID     = "DET-IDENTITY-T1110.001-BruteForce-v1",
+    Severity        = "Medium",
+    MITRETechniques = "T1110.001",
+    DeltaSeconds    = datetime_diff('second', LastSeen, FirstSeen)
+| project
+    TimeGenerated,
+    DetectionID,
+    Severity,
+    TargetUserName,
+    FailureCount,
+    FirstSeen,
+    LastSeen,
+    DeltaSeconds,
+    SrcIPs,
+    Hosts,
+    MITRETechniques
+| sort by TimeGenerated desc
