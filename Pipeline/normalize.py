@@ -89,7 +89,7 @@ def normalize_events(events: list[dict]) -> list[dict]:
         normalised.append(record)
 
     # Sort ascending by time; events with no timestamp sort to the front
-    normalised.sort(key=lambda x: _to_epoch(x.get("time")))
+    normalised.sort(key=lambda x: to_epoch(x.get("time")))
     return normalised
 
 
