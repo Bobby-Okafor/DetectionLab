@@ -34,14 +34,13 @@ jobs:
 
       - name: Validate schema contracts
         run: |
-          cd Pipeline
           python -c "
           import sys
-          sys.path.insert(0, '.')
+          sys.path.insert(0, 'Pipeline')
           from ingest import load_json
           from normalize import normalize_events
           from schema_validator import validate_events
-          events = load_json('../telemetry/raw/T1059.001_encoded_ps.json')
+          events = load_json('telemetry/raw/T1059.001_encoded_ps.json')
           normalised = normalize_events(events)
           valid, rejected = validate_events(normalised)
           assert len(rejected) == 0, f'Schema validation failed: {len(rejected)} rejected events'
@@ -49,9 +48,7 @@ jobs:
           "
 
       - name: Run full detection regression suite
-        run: |
-          cd Pipeline
-          python replay_harness.py --suite all --verbose
+        run: python Pipeline/replay_harness.py --suite all --verbose
 
       - name: Validate pipeline CLI on sample telemetry
         run: |
